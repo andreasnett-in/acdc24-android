@@ -25,7 +25,7 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.Rot90Op
 import org.tensorflow.lite.task.core.BaseOptions
 import org.tensorflow.lite.task.vision.detector.Detection
-import org.tensorflow.lite.task.vision.detector.ObjectDetector
+    import org.tensorflow.lite.task.vision.detector.ObjectDetector
 
 class ObjectDetectorHelper(
   var threshold: Float = 0.5f,
@@ -59,6 +59,7 @@ class ObjectDetectorHelper(
             ObjectDetector.ObjectDetectorOptions.builder()
                 .setScoreThreshold(threshold)
                 .setMaxResults(maxResults)
+                .setLabelAllowList(mutableListOf("banana"))
 
         // Set general detection options, including number of used threads
         val baseOptionsBuilder = BaseOptions.builder().setNumThreads(numThreads)
@@ -90,6 +91,7 @@ class ObjectDetectorHelper(
                 MODEL_EFFICIENTDETV2 -> "efficientdet-lite2.tflite"
                 else -> "mobilenetv1.tflite"
             }
+        //val modelName = "mobilenet_v2_1.4_224.tflite"
 
         try {
             objectDetector =
