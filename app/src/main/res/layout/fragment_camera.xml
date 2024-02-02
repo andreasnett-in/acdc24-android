@@ -28,8 +28,16 @@
 
     <org.tensorflow.lite.examples.objectdetection.OverlayView
         android:id="@+id/overlay"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/bananapeel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bananapeel"
+        app:layout_anchor="@+id/view_finder"
+        app:layout_anchorGravity="center" />
 
     <include
         android:id="@+id/bottom_sheet_layout"

@@ -22,12 +22,21 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
+import android.graphics.drawable.AnimationDrawable
+import android.media.Image
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.widget.ImageView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import org.tensorflow.lite.task.vision.detector.Detection
 import java.util.LinkedList
 import kotlin.math.max
-import org.tensorflow.lite.task.vision.detector.Detection
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+
 
 class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
@@ -64,6 +73,25 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         boxPaint.color = ContextCompat.getColor(context!!, R.color.bounding_box_color)
         boxPaint.strokeWidth = 8F
         boxPaint.style = Paint.Style.STROKE
+    }
+
+
+    fun animateAway() {
+        var img = findFragment<Fragment>().view?.findViewById<ImageView>(R.id.bananapeel)
+        val animation1 = AlphaAnimation(1f, 0f)
+        animation1.duration = 1000
+        animation1.fillAfter = true
+        img?.startAnimation(animation1)
+    }
+    fun alertUser() {
+        val cameraFragment = findFragment<Fragment>()
+        var img = cameraFragment.view?.findViewById<ImageView>(R.id.bananapeel)
+
+        val animation1 = AlphaAnimation(1f, 0f)
+        animation1.duration = 1000
+        animation1.fillAfter = true
+
+        img?.startAnimation(animation1)
     }
 
     override fun draw(canvas: Canvas) {
@@ -109,6 +137,9 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
       imageWidth: Int,
     ) {
         results = detectionResults
+        if (detectionResults.any()) {
+            alertUser()
+        }
 
         // PreviewView is in FILL_START mode. So we need to scale up the bounding box to match with
         // the size that the captured images will be displayed.

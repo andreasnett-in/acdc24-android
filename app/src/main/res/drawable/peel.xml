@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/peelcontainer"
+    >
+    <ImageView
+        android:id="@+id/bananapeel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bananapeel"
+        app:layout_anchor="@+id/view_finder"
+        app:layout_anchorGravity="center" />
+</selector>
